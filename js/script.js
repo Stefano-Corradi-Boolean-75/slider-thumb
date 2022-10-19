@@ -26,19 +26,27 @@ const listthumbs = document.getElementsByClassName('item-thumb');
 listImages[counterImages].classList.add('active');
 listthumbs[counterImages].classList.add('active');
 
+
 prev.addEventListener('click',function(){
-  listImages[counterImages].classList.remove('active');
-  listthumbs[counterImages].classList.remove('active');
-  counterImages++;
-  if(counterImages === numImages) counterImages = 0;
-  listImages[counterImages].classList.add('active');
-  listthumbs[counterImages].classList.add('active');
+  nextPrev(false);
 })
 next.addEventListener('click',function(){
+  nextPrev(true);
+})
+
+
+
+
+function nextPrev(isNext){
   listImages[counterImages].classList.remove('active');
   listthumbs[counterImages].classList.remove('active');
-  counterImages--;
-  if(counterImages < 0) counterImages = numImages - 1;
+  if(isNext){
+    counterImages--;
+    if(counterImages < 0) counterImages = numImages - 1;
+  }else{
+    counterImages++;
+    if(counterImages === numImages) counterImages = 0;
+  }
   listImages[counterImages].classList.add('active');
   listthumbs[counterImages].classList.add('active');
-})
+}
