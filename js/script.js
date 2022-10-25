@@ -1,3 +1,4 @@
+const container = document.querySelector('.container');
 const slider = document.querySelector('.slider');
 const thumbs = document.querySelector('.thumbs');
 const next = document.querySelector('.next');
@@ -35,8 +36,6 @@ next.addEventListener('click',function(){
 })
 
 
-
-
 function nextPrev(isNext){
   listImages[counterImages].classList.remove('active');
   listthumbs[counterImages].classList.remove('active');
@@ -50,3 +49,22 @@ function nextPrev(isNext){
   listImages[counterImages].classList.add('active');
   listthumbs[counterImages].classList.add('active');
 }
+
+
+// AUTOPLAY
+let isOver = false;
+
+setInterval(function(){
+  // solo se il mouse non è sopra lo slider viene invocata la funzione
+  if(!isOver) nextPrev(false);
+},2000)
+
+container.addEventListener('mouseenter',function(){
+  isOver = true;
+  console.log('SOPRA');
+})
+
+container.addEventListener('mouseleave',function(){
+  isOver = false;
+  console.log('FUORI');
+})
